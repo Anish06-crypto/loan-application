@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+    {% endblock style %}
+
+
+
+</head>
+{% block content %}
+<body>
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+            <div class="total">
+        <div class="home">
+            <a href={% url 'home-loan' %}>
+                <center>
+        <img src={% static 'loans/home.jpg' %} class="rounded" alt="home loan" height="300px" width="300px"></center></a>
+        </div>
+        <div class="car">
+            <a href={% url 'car-loan' %}>
+                <center>
+        <img src={% static 'loans/car.png' %} class="rounded" alt="home loan" height="300px" width="300px"></center></a>
+        </div>
+      </div> 
+          </div>
+        </div>
+      
+
+</body>
+{% endblock content %}
+</html>

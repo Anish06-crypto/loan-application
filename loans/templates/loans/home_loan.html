@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+ {% block style %}
+    <link rel="stylesheet" href={% static 'loans/form.css' %}>
+  {% endblock style %}
+
+
+{% block content %}
+
+  <div id="task-container">
+        <div id="form-wrapper">
+        <form method="post" id="loanForm" action="/loans/home/">
+          {% csrf_token %}
+          <div id="flex-wrapper">
+            {{form|crispy}}
+          </div>
+          <button class="btn btn-success" type="submit">Save</button>
+      </form>
+          </div>
+        </div>
+
+  {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  data-cities-url="{% url 'ajax_load_cities' %}"
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#loanForm").attr("data-cities-url");  // get the url of the `load_cities` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'state': stateId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script> {% endcomment %}
+
+{% endblock %}

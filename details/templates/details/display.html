@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+    {% endblock style %}
+
+
+
+</head>
+{% block content %}
+<body>
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+        <h4 style="text-align: center;">Review about you</h4> 
+            <h5>Borrower</h5> <button><a href={% url 'basic-update' loanb.name.pk %}>Edit</a></button>
+            </br>
+             Mr.{{ loanb.name.first_name }} {{ loanb.name.last_name }}<br>
+             {{ loanb.name.email }}<br>
+             {{ loanb.name.phone_number }}<br>
+             DOB: {{ loanb.name.birth_date }}<br>
+             {{ loanb.marital_status }}<br>
+             {{ loanb.state }}</br>
+            <h5>Borrower Dependants</h5>
+            </br>
+              Age: {{ loanb.b_name.age }}
+            </br>
+            <h5>Co-Borrower</h5> <button><a href={% url 'cob-update' loanb.name.pk %}>Edit</a></button>
+              {{ loanb.cb_name.co_borrower_name }}<br>
+              Age: {{ loanb.cb_name.cob_age }}<br>
+              Annual Income: {{ loanb.cb_name.annual_income }}</br>
+              </br>
+              <button class="btn btn-success"><a href={% url 'goals' %}>Finish Section</a></button>
+          </div>
+        </div>
+      
+
+</body>
+{% endblock content %}
+</html>

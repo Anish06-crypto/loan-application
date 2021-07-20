@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+    
+    <style type="text/css">
+   
+
+        .cm-toggle {
+        -webkit-appearance: none;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        border: 0;
+        outline: 0;
+        cursor: pointer;
+        margin: 10px;
+        }
+
+
+
+        .cm-toggle:after {
+        content: '';
+        width: 60px;
+        height: 28px;
+        display: inline-block;
+        background: rgba(196, 195, 195, 0.55);
+        border-radius: 18px;
+        clear: both;
+        }
+
+
+
+        .cm-toggle:before {
+        content: '';
+        width: 32px;
+        height: 32px;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: -3px;
+        border-radius: 50%;
+        background: rgb(255, 255, 255);
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+
+
+        .cm-toggle:checked:before {
+        left: 32px;
+        box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .cm-toggle:checked:after {
+        background: #16a085;
+        }
+
+
+
+        .cm-toggle,
+        .cm-toggle:before,
+        .cm-toggle:after,
+        .cm-toggle:checked:before,
+        .cm-toggle:checked:after {
+        transition: ease .3s;
+        -webkit-transition: ease .3s;
+        -moz-transition: ease .3s;
+        -o-transition: ease .3s;
+        }
+
+        .blue:checked:after {
+        background: #396afc;
+        }
+
+ </style>
+
+{% endblock style %}
+</head>
+{% block content %}
+<body>
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+        <label for="chkPassport"><h4><i>Do you have any Dependants?</i></h4></label>
+        <input id="chkPassport" type="checkbox" name="checkbox" class="cm-toggle blue"  onclick="ShowHideDiv()" unchecked/> 
+        <div id="dvPassport" style="display: none;">
+    <form method="post" action="/dependant-info/">
+            {% csrf_token %}
+            <div id="newlink">
+            <div class="feed">
+                {{form|crispy}}
+            </div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+            <p id="addnew">
+            <a href="javascript:add_feed()">Add dependants </a>
+            </p>
+        </form>
+        <div id="newlinktpl" style="display:none">
+            <form method="post" action="/dependant-info/">
+            {% csrf_token %}
+            <div class="feed">
+              {{form|crispy}}
+            </div>
+            </form>
+        </div>
+        </div>
+        <div id="continue">
+            <button class="btn btn-success" style="float: right;"><a href={% url 'cob-view' %}>Continue</a></button>
+        </div>
+          </div>
+        </div>
+
+<script type="text/javascript">
+    function ShowHideDiv() {
+        if (document.getElementById('chkPassport').checked) {
+          document.getElementById('dvPassport').style.display='block';
+          document.getElementById('continue').style.display='none';
+        }
+
+        else{
+           document.getElementById('dvPassport').style.display='none';
+           document.getElementById('continue').style.display='block';
+        }
+    }
+
+    function validate(frm)
+        {
+        var ele = frm.elements['age'];
+        if (! ele.length)
+        {
+            alert(ele.value);
+        }
+        for(var i=0; i<ele.length; i++)
+        {
+            alert(ele[i].value);
+        }
+        return true;
+        }
+        function add_feed()
+        {
+        var div1 = document.createElement('div');
+        div1.innerHTML = document.getElementById('newlinktpl').innerHTML;
+        document.getElementById('newlink').appendChild(div1);
+        }
+</script>
+
+</body>
+{% endblock content %}
+</html>

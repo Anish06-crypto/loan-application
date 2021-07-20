@@ -1,0 +1,40 @@
+body {
+    background-color: aquamarine;
+    background-size: contain;
+}
+.middle {
+    
+    padding-left: 150px;
+    padding-right: 100px;
+    padding-top: 50px;
+    margin-right:800px; 
+    padding-bottom: 150px;
+}
+.mobile {
+    
+    border: 5px solid #00ffff;
+    
+}
+
+h1 {
+    font-style: italic;
+    /*text-shadow: 2px 2px gray;*/
+}
+h2 {
+    font-weight: 500;
+}
+.btn {
+    background-color: #4169e1;
+    border-radius: 12px;
+    box-shadow: 5px 10px gray;
+    font-family: serif;
+}
+.btn a{
+    text-decoration: none;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  

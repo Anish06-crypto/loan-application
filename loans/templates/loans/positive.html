@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+    {% endblock style %}
+
+
+
+</head>
+{% block content %}
+<body>
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+        <img src={% static 'loans/credit.jpeg' %} class="rounded" alt="credit" height="500px" width="500px">
+        <h4 style="text-align: center;">Your Credit Score</h4>
+    <p style="text-align: center">You have a good credit score you can proceed
+    <br>with the application.</p><br></center>
+            <center><h1>{{ response.creditScore }}</h1></center></br>
+            <center><button class="btn btn-success"><a href={% url 'verify' %}>Continue</a></button></center>
+          </div>
+        </div>
+      
+
+
+</body>
+{% endblock content %}
+</html>

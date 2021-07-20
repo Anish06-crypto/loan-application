@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+
+        <style type="text/css">
+   
+
+.cm-toggle {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  margin: 10px;
+}
+
+
+
+.cm-toggle:after {
+  content: '';
+  width: 60px;
+  height: 28px;
+  display: inline-block;
+  background: rgba(196, 195, 195, 0.55);
+  border-radius: 18px;
+  clear: both;
+}
+
+
+
+.cm-toggle:before {
+  content: '';
+  width: 32px;
+  height: 32px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -3px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+
+
+.cm-toggle:checked:before {
+  left: 32px;
+  box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.cm-toggle:checked:after {
+  background: #16a085;
+}
+
+
+
+.cm-toggle,
+.cm-toggle:before,
+.cm-toggle:after,
+.cm-toggle:checked:before,
+.cm-toggle:checked:after {
+  transition: ease .3s;
+  -webkit-transition: ease .3s;
+  -moz-transition: ease .3s;
+  -o-transition: ease .3s;
+}
+
+.blue:checked:after {
+  background: #396afc;
+}
+
+ </style>
+    {% endblock style %}
+
+
+
+</head>
+{% block content %}
+<body>
+    
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+        <label for="chkPassport"><h4><i>Do you have a Co-Borrower?</i></h4></label>
+        <input id="chkPassport" type="checkbox" name="checkbox" class="cm-toggle blue"  onclick="ShowHideDiv()"/> 
+        <div id="dvPassport" style="display: none;">
+    <form method="POST" action="/coborrower-info/">
+        <h4 style="text-align: center;">Co-Borrower</h4>
+        
+        {% csrf_token %}  
+            {{form|crispy}}
+            <button class="btn btn-success">Submit</button>
+            </form>    
+        </div>
+        <div id="continue">
+            <button class="btn btn-success" style="float: right;">Continue</button>
+        </div>
+    </div>   
+</div>
+ <script type="text/javascript">
+    function ShowHideDiv() {
+        if (document.getElementById('chkPassport').checked) {
+          document.getElementById('dvPassport').style.display='block';
+          document.getElementById('continue').style.display='none';
+        }
+
+        else{
+           document.getElementById('dvPassport').style.display='none';
+           document.getElementById('continue').style.display='block';
+        }
+    }
+</script>
+</body>
+{% endblock content %}
+</html>

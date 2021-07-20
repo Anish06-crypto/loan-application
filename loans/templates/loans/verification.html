@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<title>Loan Form</title>
+
+    {% block style %}
+        <link rel="stylesheet" href={% static 'details/form.css' %}>
+    {% endblock style %}
+
+
+
+</head>
+{% block content %}
+<body>
+    
+    <div id="task-container">
+        <div id="form-wrapper">
+        <img src={% static 'details/third.jpg' %} class="rounded" alt="home loan" height="500px" width="500px">
+        <h4 style="text-align: center;">You're Ready to Submit</h4>
+    <p style="text-align: center">By selecting Submit Button you will no longer be
+    <br>able to access your application. Your loan officer will
+    <br> follow up with you as soon as possible</p><br></center>
+            <input type="checkbox" unchecked/>  Borrower: I consent business electronically and agree to <span style="color: limegreen;">the consent forms.</span>
+            <center><button class="btn btn-success"><a href={% url 'final' %}>Continue</a></button></center>
+          </div>
+        </div>
+
+</body>
+{% endblock content %}
+</html>
